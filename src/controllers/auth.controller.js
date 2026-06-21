@@ -34,10 +34,8 @@ async function register(req,res){
 }
 async function login(req,res){
     const{name,email,password}=req.body;
-    const user=await userModel.findOne({
-        $or:[{name,
-            email}]
-    });
+    const user = await userModel.findOne({ $or: [{ name }, { email }] });
+
     if(!user){
         return res.status(404).json({message:"User not found"});
     }
